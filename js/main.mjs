@@ -98,10 +98,10 @@ import page from "//unpkg.com/page/page.mjs";
 
             if(evt.target.classList.contains("actionEnregistrer")){
                 let usager = {
-                    name: "Jonathan Martel",
-                    email : "toto1@test.test",
-                    password : "123123123",
-                    age : 103
+                    name: "Nicolas Rouleau",
+                    email : "optimus@auto.bot",
+                    password : "rollout",
+                    age : 42
                 }
                 Tache.setUsager(usager);
             }
@@ -116,8 +116,8 @@ import page from "//unpkg.com/page/page.mjs";
 
             if(evt.target.classList.contains("actionConnecter")){
                 let usager = {
-                    email : "toto1@test.test",
-                    password : "123123123",
+                    email : "optimus@auto.bot",
+                    password : "rollout",
                 }
                 Tache.logUsager(usager)
                     .then(infoLogin =>{
