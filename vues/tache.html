@@ -1,5 +1,5 @@
 <ul>
     {{#taches}}
-        <li data-id="{{_id}}">{{description}} <span class="material-icons">delete</span></li>
+        <li data-todo-action="completerTache" data-task-id="{{_id}}">{{description}} <span data-todo-action="supprimerTache" class="material-icons">delete</span></li>
     {{/taches}}
 </ul>
