@@ -136,6 +136,7 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionDeconnecter")) {
+				Tache.
 				info.usager = {};
 			}
 
@@ -150,7 +151,8 @@ import page from "//unpkg.com/page/page.mjs";
 					description: formulaireAjoutTache.description.value
 				}
 
-				Tache.setTache(tache, info.usager.token);
+				Tache.setTache(tache, info.usager.token)
+					.then(page.redirect("/tache"));
 			}
 
 			if(evt.target.dataset.todoAction == "completerTache") {
@@ -160,6 +162,18 @@ import page from "//unpkg.com/page/page.mjs";
 					idTache = elementTache.dataset.taskId;
 
 				elementTache.classList.toggle("complete");
+			}
+
+			if(evt.target.dataset.todoAction == "supprimerTache") {
+				
+				const
+					elementTache = evt.target.closest("li"),
+					idTache = elementTache.dataset.taskId;
+
+				Tache.supprimerTache(idTache, info.usager.token)
+					.then(data => {
+						page.redirect("/tache")
+					})
 			}
 
 		})

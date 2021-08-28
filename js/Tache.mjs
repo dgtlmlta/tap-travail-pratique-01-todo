@@ -39,11 +39,9 @@ export default class Tache {
 			.then(function (reponse) {
 				console.log(reponse);
 			});
-
-
-
-
 	}
+
+	
 	/**
 	 * Connection de l'usager sur le service Web.
 	 *
@@ -146,5 +144,34 @@ export default class Tache {
 		};
 		return fetch(this.api_url + "task", reqOptions)
 			.then(reponse => reponse.json());
+	}
+
+	/**
+	 * Supprimer une tâche de la liste de l'usager courant 
+	 * 
+	 * @param idTache Id de la tâche à supprimer
+	 * @param auth clé d'authorization liée au compte
+	 * @memberof Tache
+	 * @returns Réponse de l'opération de suppression
+	 */
+	static supprimerTache(idTache, auth) {
+		// console.log(idTache)
+		console.log(auth);;
+
+		let entete = new Headers();
+		entete.append("Content-Type", "application/json");
+		entete.append("Authorization", "Bearer " + auth);
+
+		const reqOptions = {
+			method: "DELETE",
+			headers: entete,
+			redirect: "follow"
+		}
+
+		return fetch(`${this.api_url}task/${idTache}`)
+			.then(reponse => {
+				console.log(reponse);
+			})
+
 	}
 }
