@@ -153,6 +153,15 @@ import page from "//unpkg.com/page/page.mjs";
 				Tache.setTache(tache, info.usager.token);
 			}
 
+			if(evt.target.dataset.todoAction == "completerTache") {
+				
+				const
+					elementTache = evt.target,
+					idTache = elementTache.dataset.taskId;
+
+				elementTache.classList.toggle("complete");
+			}
+
 		})
 
 	})
