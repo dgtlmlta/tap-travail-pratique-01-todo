@@ -23,18 +23,21 @@ import page from "//unpkg.com/page/page.mjs";
 	 * @param {Object} ctx
 	 * @returns {string}
 	 */
-	function getTemplate(ctx) {
+	function getTemplate(route) {
 		let template;
-		aRoutes.forEach(uneRoute => {
-			if (uneRoute.chemin == ctx.path) {
+		
+		for(const uneRoute of aRoutes) {
+			if (uneRoute.chemin == route) {
 				template = uneRoute.tmpl;
+				break;
 			}
-		});
+		};
+
 		return template;
 	}
 
 	function cbEnregistrer(ctx) {
-		let template = getTemplate(ctx);
+		let template = getTemplate(ctx.path);
 
 		if (template) {
 			Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
@@ -42,7 +45,7 @@ import page from "//unpkg.com/page/page.mjs";
 	};
 
 	function cbConnecter(ctx) {
-		let template = getTemplate(ctx);
+		let template = getTemplate(ctx.path);
 
 		if (template) {
 			Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
@@ -51,7 +54,7 @@ import page from "//unpkg.com/page/page.mjs";
 	};
 
 	function cbTaches(ctx) {
-		let template = getTemplate(ctx);
+		let template = getTemplate(ctx.path);
 		Tache.getListeTache(info.usager.token)
 			.then(donnees => {
 				info.taches = donnees.data;
@@ -63,11 +66,16 @@ import page from "//unpkg.com/page/page.mjs";
 	};
 
 	function cbAjouter(ctx) {
-		let template = getTemplate(ctx);
+		if(!info.usager.token) {
+			page.redirect("/connecter");
+			return;
+		}
+
+		let template = getTemplate(ctx.path);				
+		
 		if (template) {
 			Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
 		}
-
 	};
 
 	// Toujours s'assurer que le DOM est prêt avant de manipuler le HTML.
@@ -133,6 +141,7 @@ import page from "//unpkg.com/page/page.mjs";
 				let tache = {
 					description: "Test tache #" + Math.floor(Math.random() * 100)
 				}
+
 				if (info.usager.token) {
 					Tache.setTache(tache, info.usager.token);
 				}
