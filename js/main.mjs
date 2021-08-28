@@ -116,16 +116,17 @@ import page from "//unpkg.com/page/page.mjs";
 					email: "optimus@auto.bot",
 					password: "rollout",
 				}
+
 				Tache.logUsager(usager)
 					.then(infoLogin => {
+						console.log(infoLogin);
 						info.usager = infoLogin;
 					});
 			}
+
 			if (evt.target.classList.contains("actionDeconnecter")) {
 				info.usager = {};
 			}
-
-
 
 			if (evt.target.classList.contains("actionAjouter")) {
 				let tache = {
