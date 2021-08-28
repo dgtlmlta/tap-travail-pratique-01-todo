@@ -39,8 +39,6 @@ import page from "//unpkg.com/page/page.mjs";
 		if (template) {
 			Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
 		}
-
-		console.log("enregistrer ...")
 	};
 
 	function cbConnecter(ctx) {
@@ -117,7 +115,6 @@ import page from "//unpkg.com/page/page.mjs";
 				Tache.logUsager(usager)
 					.then(infoLogin => {
 						info.usager = infoLogin;
-						console.log(info.usager)
 					});
 			}
 			if (evt.target.classList.contains("actionDeconnecter")) {
