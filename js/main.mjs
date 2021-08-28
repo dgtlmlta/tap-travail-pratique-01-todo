@@ -50,17 +50,14 @@ import page from "//unpkg.com/page/page.mjs";
 			Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
 		}
 
-		console.log("enregistrer ...")
 	};
 
 	function cbTaches(ctx) {
 		let template = getTemplate(ctx);
 		Tache.getListeTache(info.usager.token)
 			.then(donnees => {
-				console.log(donnees)
 				info.taches = donnees.data;
-				console.log(info.taches)
-
+				
 				if (template) {
 					Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
 				}
@@ -93,11 +90,10 @@ import page from "//unpkg.com/page/page.mjs";
 
 
 		document.querySelector("main").addEventListener("click", function (evt) {
-			console.log(evt.target)
-
+			
 			if (evt.target.classList.contains("actionEnregistrer")) {
 				let usager = {
-					name: "Nicolas Rouleau",
+					name: "Optimus Prime",
 					email: "optimus@auto.bot",
 					password: "rollout",
 					age: 42
