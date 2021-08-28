@@ -112,11 +112,13 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionConnecter")) {
-				let usager = {
-					email: "optimus@auto.bot",
-					password: "rollout",
-				}
+				const formulaireConnexion = document.forms.formulaireConnexion;
 
+				const usager = {
+					email: formulaireConnexion.email.value,
+					password: formulaireConnexion.password.value,
+				}
+				
 				Tache.logUsager(usager)
 					.then(infoLogin => {
 						info.usager = infoLogin;
