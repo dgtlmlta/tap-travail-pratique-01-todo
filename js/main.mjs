@@ -99,14 +99,13 @@ import page from "//unpkg.com/page/page.mjs";
 				const formulaireEnregistrement = document.forms.formulaireEnregistrement;
 
 				const usager = {
-					name: formulaireEnregistrement.name,
-					email: formulaireEnregistrement.email,
-					password: formulaireEnregistrement.password,
-					age: formulaireEnregistrement.age
+					name: formulaireEnregistrement.name.value,
+					email: formulaireEnregistrement.email.value,
+					password: formulaireEnregistrement.password.value,
+					age: formulaireEnregistrement.age.value
 				}
 
-				console.log(usager);
-				// Tache.setUsager(usager);
+				Tache.setUsager(usager);
 			}
 
 			if (evt.target.classList.contains("actionEffacerUsager")) {
