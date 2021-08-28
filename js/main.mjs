@@ -119,7 +119,6 @@ import page from "//unpkg.com/page/page.mjs";
 
 				Tache.logUsager(usager)
 					.then(infoLogin => {
-						console.log(infoLogin);
 						info.usager = infoLogin;
 					});
 			}
