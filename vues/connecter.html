@@ -1,13 +1,13 @@
-<div id="connection">
+<form name="formulaireConnexion" id="connection">
     {{toto}}
     
-    <p>Courriel : <input type="text" name="email"></p>
-    <p>Mot de passe : <input type="password" name="password"></p>
+    <p>Courriel : <input type="text" name="email" value="optimus@auto.bot"></p>
+    <p>Mot de passe : <input type="password" name="password" value="rollout"></p>
     {{^usager.token}}
     <p><button class="btn actionConnecter">Se connecter</button></p>
     {{/usager.token}}
     {{#usager.token}}
     <p><button class="btn actionDeconnecter">Se déconnecter</button></p>
     {{/usager.token}}
-    <p><button class="btn actionEffacerUsager">Effacer usager</button></p>
-</div>
+    <p><button type="button" class="btn actionEffacerUsager">Effacer usager</button></p>
+</form>
