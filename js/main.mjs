@@ -140,10 +140,6 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionAjouter")) {
-				// let tache = {
-				// 	description: "Test tache #" + Math.floor(Math.random() * 100)
-				// }
-
 				if (!info.usager.token) {
 					return;
 				}
