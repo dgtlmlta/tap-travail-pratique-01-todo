@@ -136,7 +136,6 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionDeconnecter")) {
-				Tache.
 				info.usager = {};
 			}
 

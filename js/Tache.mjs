@@ -41,7 +41,7 @@ export default class Tache {
 			});
 	}
 
-	
+
 	/**
 	 * Connection de l'usager sur le service Web.
 	 *
@@ -69,6 +69,29 @@ export default class Tache {
 			});
 	}
 
+	/**
+	 * Déconnecter l'usager du service web
+	 *
+	 * @static
+	 * @param {string} auth - clé d'authorization liée au compte
+	 * @returns ?
+	 * @memberof Tache
+	 */
+	 static logoutUsager(auth) {
+		const entete = new Headers();
+		entete.append("Authorization", "Bearer " + auth);
+
+		const reqOptions = {
+			method: 'POST',
+			headers: entete,
+			redirect: 'follow'
+		};
+
+		return fetch(`${this.api_url}user/logout`, reqOptions)
+			.then(function (reponse) {
+				return reponse.json();
+			});
+	}
 
 	/**
 	 * Effacer le compte de l'usager sur le service Web
