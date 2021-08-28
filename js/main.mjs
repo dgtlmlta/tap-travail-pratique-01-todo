@@ -131,6 +131,7 @@ import page from "//unpkg.com/page/page.mjs";
 				Tache.logUsager(usager)
 					.then(infoLogin => {
 						info.usager = infoLogin;
+						page.redirect("/tache")
 					});
 			}
 
