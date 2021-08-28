@@ -55,6 +55,7 @@ import page from "//unpkg.com/page/page.mjs";
 
 	function cbTaches(ctx) {
 		let template = getTemplate(ctx.path);
+
 		Tache.getListeTache(info.usager.token)
 			.then(donnees => {
 				info.taches = donnees.data;
@@ -138,13 +139,21 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionAjouter")) {
-				let tache = {
-					description: "Test tache #" + Math.floor(Math.random() * 100)
+				// let tache = {
+				// 	description: "Test tache #" + Math.floor(Math.random() * 100)
+				// }
+
+				if (!info.usager.token) {
+					return;
 				}
 
-				if (info.usager.token) {
-					Tache.setTache(tache, info.usager.token);
+				const formulaireAjoutTache = document.forms.formulaireAjoutTache;
+
+				const tache = {
+					description: formulaireAjoutTache.description.value
 				}
+
+				Tache.setTache(tache, info.usager.token);
 			}
 
 		})
