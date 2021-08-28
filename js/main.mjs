@@ -90,12 +90,7 @@ import page from "//unpkg.com/page/page.mjs";
 		document.querySelector("main").addEventListener("click", function (evt) {
 			
 			if (evt.target.classList.contains("actionEnregistrer")) {
-				// let usager = {
-				// 	name: "Optimus Prime",
-				// 	email: "optimus@auto.bot",
-				// 	password: "rollout",
-				// 	age: 42
-				// }
+				
 				const formulaireEnregistrement = document.forms.formulaireEnregistrement;
 
 				const usager = {
