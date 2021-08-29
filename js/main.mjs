@@ -7,10 +7,12 @@ import page from "//unpkg.com/page/page.mjs";
 	const
 		todoApp = new TodoApp(),
 		info = { usager: {}, taches: [], toto: "allo le monde" };
+	
+	let taskPollingTimeout;
 
 	const aRoutes = [
 		{ chemin: "/enregistrer", fichier: "enregistrer.html", tmpl: "", cb: cbEnregistrer },
-		{ chemin: "/tache", fichier: "tache.html", tmpl: "", cb: cbTaches },
+		{ chemin: "/tache", fichier: "tache.html", tmpl: "", cb: cbTaches, exit: exitTaches },
 		{ chemin: "/ajouter", fichier: "ajouter.html", tmpl: "", cb: cbAjouter },
 		{ chemin: "/", fichier: "tache.html", tmpl: "", cb: function () { } },
 		{ chemin: "/connecter", fichier: "connecter.html", tmpl: "", cb: cbConnecter },
@@ -58,13 +60,24 @@ import page from "//unpkg.com/page/page.mjs";
 
 		Tache.getListeTache(info.usager.token)
 			.then(donnees => {
-				info.taches = donnees.data;
+				console.log(donnees.data);
+				if(info.taches != donnees.data) {
+					info.taches = donnees.data;
 				
-				if (template) {
-					Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+					if (template) {
+						Affichage.afficherTemplate(template, info, document.querySelector("main"));   // tmpl, data, noeud
+					}
 				}
 			});
+
+		taskPollingTimeout = setTimeout(() => {cbTaches(ctx)}, 5*1000);
+		
 	};
+
+	function exitTaches() {
+		clearTimeout(taskPollingTimeout);
+		return;
+	}
 
 	function cbAjouter(ctx) {
 		if(!info.usager.token) {

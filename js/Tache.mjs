@@ -182,8 +182,6 @@ export default class Tache {
 		const entete = new Headers();
 		entete.append("Content-Type", "application/json");
 		entete.append("Authorization", "Bearer " + auth);
-		
-		console.log(entete.get("Authorization"));
 
 		const reqOptions = {
 			method: "DELETE",
