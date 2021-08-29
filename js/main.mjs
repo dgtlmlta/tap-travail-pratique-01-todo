@@ -74,9 +74,10 @@ import page from "//unpkg.com/page/page.mjs";
 		
 	};
 
-	function exitTaches() {
+	function exitTaches(ctx, next) {
+		console.log("je suis sorti du loop");
 		clearTimeout(taskPollingTimeout);
-		return;
+		next();
 	}
 
 	function cbAjouter(ctx) {
@@ -100,6 +101,11 @@ import page from "//unpkg.com/page/page.mjs";
 				// prêt à afficher/créer mes routes.
 				aRoutes.forEach(uneRoute => {
 					page(uneRoute.chemin, uneRoute.cb); // Configuration de l'ensemble des routes.
+					
+					// Si la route a une fonction de sortie de page, l'ajouter.
+					if(uneRoute.exit) {
+						page.exit(uneRoute.chemin, uneRoute.exit);
+					}
 				})
 			});
 
