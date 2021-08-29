@@ -60,7 +60,6 @@ import page from "//unpkg.com/page/page.mjs";
 
 		Tache.getListeTache(info.usager.token)
 			.then(donnees => {
-				console.log(donnees.data);
 				if(info.taches != donnees.data) {
 					info.taches = donnees.data;
 				
@@ -70,12 +69,10 @@ import page from "//unpkg.com/page/page.mjs";
 				}
 			});
 
-		taskPollingTimeout = setTimeout(() => {cbTaches(ctx)}, 5*1000);
-		
+		taskPollingTimeout = setTimeout(() => {cbTaches(ctx)}, 5*1000);		
 	};
 
 	function exitTaches(ctx, next) {
-		console.log("je suis sorti du loop");
 		clearTimeout(taskPollingTimeout);
 		next();
 	}

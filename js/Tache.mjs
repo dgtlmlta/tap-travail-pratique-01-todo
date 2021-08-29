@@ -189,8 +189,6 @@ export default class Tache {
 			redirect: "follow"
 		}
 
-		console.log(reqOptions.headers);
-
 		return fetch(`${this.api_url}task/${idTache}`, reqOptions)
 			.then(reponse => {
 				console.log(reponse);
