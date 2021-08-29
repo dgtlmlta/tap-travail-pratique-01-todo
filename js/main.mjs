@@ -136,7 +136,11 @@ import page from "//unpkg.com/page/page.mjs";
 			}
 
 			if (evt.target.classList.contains("actionDeconnecter")) {
-				info.usager = {};
+				Tache.logoutUsager(info.usager.token)
+					.then(data => {
+						console.log(data);
+						info.usager = {};
+					})				
 			}
 
 			if (evt.target.classList.contains("actionAjouter")) {

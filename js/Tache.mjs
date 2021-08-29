@@ -178,12 +178,12 @@ export default class Tache {
 	 * @returns Réponse de l'opération de suppression
 	 */
 	static supprimerTache(idTache, auth) {
-		// console.log(idTache)
-		console.log(auth);;
-
-		let entete = new Headers();
+		
+		const entete = new Headers();
 		entete.append("Content-Type", "application/json");
 		entete.append("Authorization", "Bearer " + auth);
+		
+		console.log(entete.get("Authorization"));
 
 		const reqOptions = {
 			method: "DELETE",
@@ -191,7 +191,9 @@ export default class Tache {
 			redirect: "follow"
 		}
 
-		return fetch(`${this.api_url}task/${idTache}`)
+		console.log(reqOptions.headers);
+
+		return fetch(`${this.api_url}task/${idTache}`, reqOptions)
 			.then(reponse => {
 				console.log(reponse);
 			})
