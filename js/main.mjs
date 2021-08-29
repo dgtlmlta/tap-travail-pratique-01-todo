@@ -71,13 +71,21 @@ import page from "//unpkg.com/page/page.mjs";
 
 		taskPollingTimeout = setTimeout(() => {cbTaches(ctx)}, 5*1000);		
 	};
-
+	
+	/**
+	 * Simple callback pour arrêter le polling à la sortie de la liste des tâches
+	 *
+	 * @param {Object} ctx
+	 * @param {Function}
+	 * @returns {string}
+	 */
 	function exitTaches(ctx, next) {
 		clearTimeout(taskPollingTimeout);
 		next();
 	}
 
 	function cbAjouter(ctx) {
+		// Si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
 		if(!info.usager.token) {
 			page.redirect("/connecter");
 			return;
